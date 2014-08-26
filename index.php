@@ -87,7 +87,17 @@ if (isset($_SESSION['first-name']) && $_SESSION['logged-in']) {
 			foreach ($all_messages as $record) {
 				$sql_comments = "SELECT * FROM comments WHERE {$record['idmessages']} = comments.messages_idmessages";
 				$comment_arr = fetchrecords($sql_comments);
+				$author_id = $record['users_id'];
+				$author_query = "SELECT DISTINCT concat(first_name, ' ', last_name ) AS name
+								FROM users WHERE {$author_id} = id";
+				$author_name = fetchrecords($author_query);
+
+				// var_dump($author_name);
 				// var_dump($comment_arr);
+				// echo $record['first_name'] . " " . $record['last_name'] . " " . date();
+				
+				// <<< this is where message author goes >>>
+				echo $author_name[0]['name'] . "<br>";
 				echo $record['message'] . "<br>"; 
 				foreach ($comment_arr as $value) {
 					echo $value['comment'];
