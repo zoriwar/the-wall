@@ -97,7 +97,7 @@ if (isset($_SESSION['first-name']) && $_SESSION['logged-in']) {
 				// echo $record['first_name'] . " " . $record['last_name'] . " " . date();
 				
 				// <<< this is where message author goes >>>
-				echo $author_name[0]['name'] . "<br>";
+				echo $author_name[0]['name'] . " " . date('F d Y', strtotime($record['updated_at'])) . "<br>";
 				echo $record['message'] . "<br>"; 
 				foreach ($comment_arr as $value) {
 					echo $value['comment'];
